@@ -13,14 +13,15 @@ namespace SRML
         /// </summary>
         IModInfo Info { get; }
 
-        /// <summary>
-        /// The main assembly where the mods entry point is located]
-        /// </summary>
-        Assembly MainAssembly { get; }
 
         /// <summary>
         /// Load this mod
         /// </summary>
         void Load();
+
+        /// <summary>
+        /// Setup things that need to be setup before load
+        /// </summary>
+        void PreLoad();
     }
 }

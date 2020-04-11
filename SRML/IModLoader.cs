@@ -7,6 +7,6 @@ namespace SRML
 {
     interface IModLoader
     {
-        IMod Load(IModInfo info, IModFileSystem modfiles);
+        bool TryLoad(IModInfo info, IModFileSystem modfiles, out IMod mod);
     }
 }

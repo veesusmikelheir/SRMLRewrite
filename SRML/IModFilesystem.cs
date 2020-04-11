@@ -4,6 +4,6 @@ namespace SRML
 {
     public interface IModFileSystem
     {
-        IEnumerable<string> GetModFiles();
+        IEnumerable<string> ModFiles { get; }
     }
 }
