@@ -1,0 +1,2 @@
+C:\Users\veesusmikelheir\source\repos\SRML\SRML\obj\Debug\SRML.csprojAssemblyReference.cache
+C:\Users\veesusmikelheir\source\repos\SRML\SRML\obj\Debug\SRML.csproj.CoreCompileInputs.cache
