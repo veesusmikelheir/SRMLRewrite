@@ -11,6 +11,6 @@ namespace SRML
         /// Makes sure that the given list of mods is valid, otherwise throws an exception
         /// </summary>
         /// <param name="informations"></param>
-        void CheckForValidity(IEnumerable<IMod> informations);
+        void CheckForValidity(IEnumerable<IModInfo> informations);
     }
 }

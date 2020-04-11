@@ -17,6 +17,6 @@
         LessThan = 4,
         Major = 8,
         Minor = 16,
-        Revision=32
+        Revision = 32
     }
 }

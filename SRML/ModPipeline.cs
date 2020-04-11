@@ -31,13 +31,17 @@ namespace SRML
         public void InitializeMods(string directory)
         {
             var modDomain = ModLocator.LocateMods(directory);
+            var parsedMods = modDomain.ModFiles.Select(x => new { FileSystem = x, Info = ModParser.TryParse(x, out var info) ? info : null });
+            IntegrityChecker.CheckForValidity(parsedMods.Select(x => x.Info));
             using (var dummy = Resolver.Initialize(modDomain))
             {
-                foreach (var files in modDomain.ModFiles)
+                foreach (var parsedMod in parsedMods)
                 {
-                    ModParser.TryParse(files, out var info);
-                    _mods.Add(ModLoader.Load(info, files));
-                    IntegrityChecker.CheckForValidity(_mods);
+                    if (ModLoader.TryLoad(parsedMod.Info,parsedMod.FileSystem,out var mod))
+                    {
+                        _mods.Add(mod);
+
+                    }
                 }
             }
 
