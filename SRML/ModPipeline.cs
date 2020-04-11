@@ -11,13 +11,14 @@ namespace SRML
 
         public IEnumerable<IMod> Mods => _mods;
 
-        public ModPipeline(IModLocator modLocator, IModParser modParser, IModLoader modLoader, IModIntegrityChecker integrityChecker,IAssemblyResolver resolver)
+        public ModPipeline(IModLocator modLocator, IModParser modParser, IModLoader modLoader, IModIntegrityChecker integrityChecker,IAssemblyResolver resolver,ILoadOrderCalculator orderer)
         {
             ModLocator = modLocator;
             ModParser = modParser;
             ModLoader = modLoader;
             IntegrityChecker = integrityChecker;
             Resolver = resolver;
+            OrderCalculator = orderer;
             _mods = new List<IMod>();
         }
 
@@ -26,8 +27,8 @@ namespace SRML
         IModLoader ModLoader;
         IModIntegrityChecker IntegrityChecker;
         IAssemblyResolver Resolver;
-
-
+        ILoadOrderCalculator OrderCalculator; 
+        
         public void InitializeMods(string directory)
         {
             var modDomain = ModLocator.LocateMods(directory);
@@ -37,15 +38,14 @@ namespace SRML
             {
                 foreach (var parsedMod in parsedMods)
                 {
-                    if (ModLoader.TryLoad(parsedMod.Info,parsedMod.FileSystem,out var mod))
+                    if (ModLoader.TryLoad(parsedMod.Info,parsedMod.FileSystem,modDomain,out var mod))
                     {
                         _mods.Add(mod);
 
                     }
                 }
             }
-
-            
+            _mods = OrderCalculator.CalculateLoadOrder(_mods).ToList();
         }
     }
 }

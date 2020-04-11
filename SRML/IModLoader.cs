@@ -14,6 +14,6 @@ namespace SRML
         /// <param name="modfiles"></param>
         /// <param name="mod"></param>
         /// <returns></returns>
-        bool TryLoad(IModInfo info, IModFileSystem modfiles, out IMod mod);
+        bool TryLoad(IModInfo info, IModFileSystem modfiles, IModLoadingDomain loadingdomain, out IMod mod);
     }
 }
