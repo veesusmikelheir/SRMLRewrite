@@ -3,6 +3,8 @@ using NUnit.Framework;
 using Moq;
 using System.Collections.Generic;
 using System.Linq;
+using SRML.ModLoading.API;
+using SRML.ModLoading.Core;
 
 namespace SRML.Testing
 {
@@ -53,7 +55,7 @@ namespace SRML.Testing
 
         void CommonAssertions()
         {
-            integrity.Verify(x => x.CheckForValidity(It.IsAny<IEnumerable<IModInfo>>()), Times.AtLeastOnce());
+            integrity.Verify(x => x.CheckForValidity(It.IsAny<IEnumerable<IModInfo>>()), Times.Exactly(1));
             resolver.Verify(x => x.Initialize(It.IsAny<IModLoadingDomain>()), Times.AtLeastOnce());
             resolverDisposeMock.Verify(x => x.Dispose(), Times.Exactly(resolveCount));
             loadorder.Verify(x => x.CalculateLoadOrder(It.IsAny<IEnumerable<IMod>>()), Times.AtLeastOnce());

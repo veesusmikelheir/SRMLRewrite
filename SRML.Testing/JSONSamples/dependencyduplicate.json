@@ -1,0 +1,15 @@
+﻿{
+  "id": "test",
+  "name": "name",
+  "version": "1.0",
+  "dependencies": [
+    {
+      "id": "test2",
+      "version": ">1.0"
+    },
+    {
+      "id": "test2",
+      "version": ">=1.3.2"
+    }
+  ]
+}
