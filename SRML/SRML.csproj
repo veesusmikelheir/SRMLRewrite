@@ -49,7 +49,10 @@
     <Compile Include="ModLoading\API\IModLoadOrder.cs" />
     <Compile Include="ModLoading\BasicModLoader.cs" />
     <Compile Include="ModLoading\Core\FileSystemDomain.cs" />
+    <Compile Include="ModLoading\Core\Integrity\AggregateIntegrityChecker.cs" />
+    <Compile Include="ModLoading\Core\Integrity\DuplicateIntegrityChecker.cs" />
     <Compile Include="ModLoading\Core\ModInfo.cs" />
+    <Compile Include="ModLoading\Core\Integrity\DependencyIntegrityChecker.cs" />
     <Compile Include="ModLoading\FileSystemModLocator.cs" />
     <Compile Include="ModLoading\API\ILoadOrderCalculator.cs" />
     <Compile Include="ModLoading\API\IMod.cs" />

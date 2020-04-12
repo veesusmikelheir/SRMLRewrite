@@ -6,12 +6,12 @@ using System.Linq;
 using SRML.ModLoading.API;
 using SRML.ModLoading.Core;
 
-namespace SRML.Testing
+namespace SRML.Testing.ModLoading
 {
     [TestFixture]
     public class ModPipelineTests
     {
-        
+
 
 
         IModLocator locator;
@@ -34,7 +34,7 @@ namespace SRML.Testing
             // return fake file systems based on the input "files"
 
 
-            
+
             locator = new FakeModLoactor();
             resolveCount = 0;
             parser = new FakeModParser();
@@ -43,10 +43,10 @@ namespace SRML.Testing
             integrity = new Mock<IModIntegrityChecker>();
 
             resolverDisposeMock = new Mock<IDisposable>();
-            
+
             resolver = new Mock<IAssemblyResolver>();
 
-            resolver.Setup(x => x.Initialize(It.IsAny<IModLoadingDomain>())).Returns(resolverDisposeMock.Object).Callback(()=>resolveCount++);
+            resolver.Setup(x => x.Initialize(It.IsAny<IModLoadingDomain>())).Returns(resolverDisposeMock.Object).Callback(() => resolveCount++);
 
             loadorder = new Mock<ILoadOrderCalculator>();
             loadorder.Setup(x => x.CalculateLoadOrder(It.IsAny<IEnumerable<IMod>>())).Returns(new Func<IEnumerable<IMod>, IEnumerable<IMod>>(x => x));
@@ -73,9 +73,9 @@ namespace SRML.Testing
         [Test]
         public void Pipeline_InitializeMods_ParseFailure()
         {
-            Assert.Throws<Exception>(()=>pipeline.InitializeMods(""));
-            
-            
+            Assert.Throws<Exception>(() => pipeline.InitializeMods(""));
+
+
 
         }
 
@@ -92,7 +92,7 @@ namespace SRML.Testing
 
 
         class FakeFileSystem : IModFileSystem
-        { 
+        {
             string[] files;
             public FakeFileSystem(string[] files)
             {
@@ -127,8 +127,8 @@ namespace SRML.Testing
             public bool TryParse(IModFileSystem loadInfo, out IModInfo modInfo)
             {
                 modInfo = new FakeModInfo(loadInfo);
-                
-                return !loadInfo.ModFiles.Any(x=>x==""); // return false if one of the "files" is empty, in order to simulate a parsing failure (it being empty has no significance outside of signaling to the test to throw a false)
+
+                return !loadInfo.ModFiles.Any(x => x == ""); // return false if one of the "files" is empty, in order to simulate a parsing failure (it being empty has no significance outside of signaling to the test to throw a false)
             }
         }
 
@@ -148,7 +148,7 @@ namespace SRML.Testing
             public IModLoadingDomain LocateMods(string coredirectory)
             {
                 var fakes = new List<IModFileSystem>();
-                foreach(var list in coredirectory.Split(';')) // we split the file systems we want to put in using semicolons
+                foreach (var list in coredirectory.Split(';')) // we split the file systems we want to put in using semicolons
                 {
                     fakes.Add(new FakeFileSystem(list.Split(','))); // split the system based on commas
                 }

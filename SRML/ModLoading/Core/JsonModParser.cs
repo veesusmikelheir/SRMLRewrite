@@ -38,8 +38,8 @@ namespace SRML.ModLoading.Core
             [JsonProperty] string version;
             [JsonProperty] string api_version;
             [JsonProperty] JsonModDependency[] dependencies;
-            [JsonProperty] string[] load_before;
-            [JsonProperty] string[] load_after;
+            [JsonProperty] string[] loads_before;
+            [JsonProperty] string[] loads_after;
             public string Name => name;
 
             public string Description => description;
@@ -57,9 +57,9 @@ namespace SRML.ModLoading.Core
             public IModDependency[] Dependencies => dependencies;
             public IModLoadOrder LoadOrder => this;
 
-            public string[] LoadBefore => load_before;
+            public string[] LoadsBefore => loads_before;
 
-            public string[] LoadAfter => load_after;
+            public string[] LoadsAfter => loads_after;
 
             public static JsonInfoMod FromJSON(string json)
             {
@@ -91,11 +91,10 @@ namespace SRML.ModLoading.Core
                 MakeNotNull(ref load_after, new string[0]);
                 MakeNotNull(ref dependencies, new JsonModDependency[0]);
                 MakeNotNull(ref api_version, Assembly.GetExecutingAssembly().GetName().Version.ToString());
-                var dependencySet = new HashSet<string>();
                 foreach (var dependency in dependencies)
                 {
                     if (dependency.ID == null || dependency.ID.Length == 0) throw new ArgumentNullException("dependencies");
-                    if (!dependencySet.Add(dependency.ID)) throw new ArgumentException("dependency id");
+                    
                 }
                 
 

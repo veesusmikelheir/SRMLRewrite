@@ -68,9 +68,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CompareTypeTests.cs" />
-    <Compile Include="FileSystemDomainTests.cs" />
-    <Compile Include="JsonParserTests.cs" />
-    <Compile Include="ModPipelineTests.cs" />
+    <Compile Include="ModLoading\Integrity\DependencyIntegrityTests.cs" />
+    <Compile Include="ModLoading\FileSystemDomainTests.cs" />
+    <Compile Include="ModLoading\JsonParserTests.cs" />
+    <Compile Include="ModLoading\ModPipelineTests.cs" />
     <Compile Include="VersionRequirementTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -111,13 +112,13 @@
     <None Include="JSONSamples\minimum.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="ModDirectory\DontScanThis.json">
+    <None Include="ModLocatingDirectory\DontScanThis.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="ModDirectory\Mod\modinfo.json">
+    <None Include="ModLocatingDirectory\Mod\modinfo.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="ModDirectory\OtherMod\Subfolder\Asset.json">
+    <None Include="ModLocatingDirectory\OtherMod\Subfolder\Asset.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
@@ -129,16 +130,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ModDirectory\AlsoFake.dll">
+    <Content Include="ModLocatingDirectory\AlsoFake.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ModDirectory\Fake.dll">
+    <Content Include="ModLocatingDirectory\Fake.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ModDirectory\Mod\Mod.dll">
+    <Content Include="ModLocatingDirectory\Mod\Mod.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ModDirectory\OtherMod\OtherMod.dll">
+    <Content Include="ModLocatingDirectory\OtherMod\OtherMod.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

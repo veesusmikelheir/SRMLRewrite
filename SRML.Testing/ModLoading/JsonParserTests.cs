@@ -4,7 +4,7 @@ using NUnit.Framework;
 using SRML.ModLoading.API;
 using SRML.ModLoading.Core;
 
-namespace SRML.Testing
+namespace SRML.Testing.ModLoading
 {
     [TestFixture]
     public class JsonParserTests
@@ -27,8 +27,8 @@ namespace SRML.Testing
             Assert.NotNull(info.MetaData.Description);
             Assert.NotNull(info.Dependencies);
             Assert.NotNull(info.LoadOrder);
-            Assert.NotNull(info.LoadOrder.LoadAfter);
-            Assert.NotNull(info.LoadOrder.LoadBefore);
+            Assert.NotNull(info.LoadOrder.LoadsAfter);
+            Assert.NotNull(info.LoadOrder.LoadsBefore);
             Assert.NotNull(info.APIVersion);
             Assert.NotNull(info.Version);
         }
@@ -40,7 +40,7 @@ namespace SRML.Testing
 
 
             NotNullAsserts(info);
-            
+
         }
 
 
@@ -57,8 +57,8 @@ namespace SRML.Testing
         }
 
 
-       
-            
+
+
 
         [Test]
         public void JsonParser_ParseJSON_Default_API_Version()
@@ -66,13 +66,13 @@ namespace SRML.Testing
             var info = LoadJSONFile("minimum");
 
             Assert.AreEqual(info.APIVersion, typeof(JsonModParser).Assembly.GetName().Version);
-            
+
         }
 
         [Test]
         public void JsonParser_ParseJSON_Missing_ID()
         {
-            Assert.Throws<ArgumentNullException>(()=>LoadJSONFile("missingid"),"id");
+            Assert.Throws<ArgumentNullException>(() => LoadJSONFile("missingid"), "id");
 
 
 
@@ -123,7 +123,7 @@ namespace SRML.Testing
 
 
         [Test]
-        public void JsonParser_ParseJSON_Dependency_Normal ()
+        public void JsonParser_ParseJSON_Dependency_Normal()
         {
             var info = LoadJSONFile("dependencynormal");
 
@@ -138,12 +138,6 @@ namespace SRML.Testing
             Assert.AreEqual(info.Dependencies[1].VersionRequirement, expected);
         }
 
-        [Test]
-        public void JsonParser_ParseJSON_Dependency_Duplicate()
-        {
-            Assert.Throws<ArgumentException>(()=>LoadJSONFile("dependencyduplicate"));
-
-        }
 
         [Test]
         public void JsonParser_ParseJSON_Dependency_Null_ID()
@@ -162,7 +156,7 @@ namespace SRML.Testing
         [Test]
         public void JsonParser_ParseJSON_Dependency_Missing_Version()
         {
-            
+
             Assert.Throws<ArgumentNullException>(() => LoadJSONFile("dependencymissingversion"));
 
         }

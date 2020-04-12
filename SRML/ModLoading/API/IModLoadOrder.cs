@@ -2,7 +2,7 @@
 {
     public interface IModLoadOrder
     {
-        string[] LoadBefore { get; }
-        string[] LoadAfter { get; }
+        string[] LoadsBefore { get; }
+        string[] LoadsAfter { get; }
     }
 }
