@@ -7,14 +7,16 @@ using System.Text;
 using Newtonsoft.Json;
 using SRML.ModLoading.API;
 
-namespace SRML.ModLoading.Core
+namespace SRML.ModLoading.Core.Parsers
 {
     public abstract class JsonModParser : IModParser
     {
         public bool TryParse(IModFileSystem loadInfo, out IModInfo modInfo)
         {
             modInfo = null;
-            var modinfo = ParseJSON(GetJSONInput(loadInfo));
+            var input = GetJSONInput(loadInfo);
+            if (input == null || input.Length == 0) return false;
+            var modinfo = ParseJSON(input);
             if (modinfo == null) return false;
             return true;
         }
@@ -31,7 +33,7 @@ namespace SRML.ModLoading.Core
         internal class JsonInfoMod : IModInfo, IModMetaData, IModLoadOrder
         {
 
-            [JsonProperty]string id;
+            [JsonProperty] string id;
             [JsonProperty] string name;
             [JsonProperty] string description;
             [JsonProperty] string author;
@@ -71,7 +73,7 @@ namespace SRML.ModLoading.Core
 
                     return proto;
                 }
-                catch(TargetInvocationException e)
+                catch (TargetInvocationException e)
                 {
                     throw e.InnerException;
                 }
@@ -94,9 +96,9 @@ namespace SRML.ModLoading.Core
                 foreach (var dependency in dependencies)
                 {
                     if (dependency.ID == null || dependency.ID.Length == 0) throw new ArgumentNullException("dependencies");
-                    
+
                 }
-                
+
 
                 Version = Version.Parse(version);
                 APIVersion = Version.Parse(api_version);
@@ -106,7 +108,7 @@ namespace SRML.ModLoading.Core
                 toCheck = toCheck ?? obj;
             }
 
-            void MakeNotNull(ref string toCheck)=>MakeNotNull(ref toCheck,"");
+            void MakeNotNull(ref string toCheck) => MakeNotNull(ref toCheck, "");
 
             [JsonObject(MemberSerialization.Fields)]
             class JsonModDependency : IModDependency

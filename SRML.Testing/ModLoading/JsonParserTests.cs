@@ -2,7 +2,7 @@
 using System.IO;
 using NUnit.Framework;
 using SRML.ModLoading.API;
-using SRML.ModLoading.Core;
+using SRML.ModLoading.Core.Parsers;
 
 namespace SRML.Testing.ModLoading
 {

@@ -51,6 +51,36 @@ namespace SRML.Testing.ModLoading
             Assert.Throws<Exception>(() => OrderCalculator.CalculateLoadOrder(toSort));
             
         }
+
+        [Test]
+        public void LoadOrderCalculator_CalculateLoadOrder_No_Load_Order()
+        {
+            var originalSequence = new Mod[]
+            {
+                new Mod("test"),
+                new Mod("test3"),
+                new Mod("test2")
+            };
+
+            var toSort = originalSequence;
+            Assert.DoesNotThrow(() => OrderCalculator.CalculateLoadOrder(toSort));
+
+        }
+
+        [Test]
+        public void LoadOrderCalculator_CalculateLoadOrder_Nonexistent_Mods()
+        {
+            var originalSequence = new Mod[]
+            {
+                new Mod("test",new string[]{"te2adst2"},new string[]{}),
+                new Mod("test3",new string[]{"teasdst2"},new string[]{"teasast"}),
+                new Mod("test2",new string[]{"tesadat"},new string[]{})
+            };
+
+            var toSort = originalSequence;
+            Assert.DoesNotThrow(() => OrderCalculator.CalculateLoadOrder(toSort));
+
+        }
     }
 
     public class Mod : IMod, IModInfo, IModLoadOrder
