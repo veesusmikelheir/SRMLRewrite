@@ -9,6 +9,7 @@ namespace SRML
     {
         public bool TryLoad(IModInfo info, IModFileSystem modfiles, IModLoadingDomain loadingdomain, out IMod mod)
         {
+            throw new Exception();
             mod = null;
             
         }

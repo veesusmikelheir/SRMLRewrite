@@ -3,7 +3,7 @@
     public interface IModDependency
     {
         string ID { get; }
-        ModVersionRequirement VersionRequirement { get; }
+        VersionRequirement VersionRequirement { get; }
     }
 
 }

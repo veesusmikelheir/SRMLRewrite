@@ -1,4 +1,6 @@
-﻿namespace SRML
+﻿using System;
+
+namespace SRML
 {
     public interface IModInfo
     {
@@ -10,7 +12,12 @@
         /// <summary>
         /// The version of the mod
         /// </summary>
-        ModVersion Version { get; }
+        Version Version { get; }
+
+        /// <summary>
+        /// SRML Version this mod was built for
+        /// </summary>
+        Version APIVersion { get; }
 
         /// <summary>
         /// Metadata that is not essential for the mods function, but useful to have

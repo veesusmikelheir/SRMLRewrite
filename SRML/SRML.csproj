@@ -12,6 +12,8 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,6 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasicModLoader.cs" />
+    <Compile Include="FileSystemDomain.cs" />
+    <Compile Include="FileSystemModLocator.cs" />
+    <Compile Include="IAssemblyResolver.cs" />
+    <Compile Include="ILoadOrderCalculator.cs" />
     <Compile Include="IMod.cs" />
     <Compile Include="IModContainer.cs" />
     <Compile Include="IModDependency.cs" />
@@ -47,13 +54,16 @@
     <Compile Include="IModInfo.cs" />
     <Compile Include="IModIntegrityChecker.cs" />
     <Compile Include="IModLoader.cs" />
-    <Compile Include="IModLoadInfo.cs" />
+    <Compile Include="IModFileSystem.cs" />
+    <Compile Include="IModLoadingDomain.cs" />
     <Compile Include="IModLoadOrder.cs" />
     <Compile Include="IModLocator.cs" />
     <Compile Include="IModMetaData.cs" />
     <Compile Include="IModParser.cs" />
-    <Compile Include="ModVersion.cs" />
+    <Compile Include="JsonModParser.cs" />
+    <Compile Include="ModPipeline.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VersionRequirement.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
