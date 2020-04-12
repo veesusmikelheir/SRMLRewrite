@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SRML
 {
-    interface IModParser
+    public interface IModParser
     {
         /// <summary>
         /// Parses a mod file system to try and file the mods information, whereever it may be

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SRML
 {
-    public class VersionRequirement
+    public class VersionRequirement 
     {
         public Version ComparedVersion;
         public CompareType CompareType;
@@ -19,6 +19,27 @@ namespace SRML
         public override string ToString()
         {
             return CompareType.GetString() + ComparedVersion.ToString();
+        }
+
+        public bool SatisfiedWith(Version version)
+        {
+            if (version == null) throw new ArgumentNullException("version");
+            return Compare(version, ComparedVersion, CompareType);
+        }
+
+        public static bool Compare(Version a, Version b, CompareType type)
+        {
+            if (a == null || b == null) throw new ArgumentNullException();
+            if (CompareType.NONE == type) throw new ArgumentException("type");
+            var compared = a.CompareTo(b);
+            bool equal = (type & CompareType.EqualTo) > 0;
+            bool greater = (type & CompareType.GreaterThan) > 0;
+            bool less = (type & CompareType.LessThan) > 0;
+            if (greater && less) throw new ArgumentException("type");
+            if (compared == 0 && equal) return true;
+            if (compared == -1 && less) return true;
+            if (compared == 1 && greater) return true;
+            return false;
         }
 
         public static VersionRequirement Parse(string requirement)
@@ -91,5 +112,7 @@ namespace SRML
             return stringOut;
 
         }
+
+
     }
 }

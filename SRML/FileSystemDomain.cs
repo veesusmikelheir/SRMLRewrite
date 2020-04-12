@@ -16,6 +16,7 @@ namespace SRML
         string CoreDirectory;
         public FileSystemDomain(string directory)
         {
+            systems = new List<IModFileSystem>();
             CoreDirectory = directory;
 
             GenerateModSystems();

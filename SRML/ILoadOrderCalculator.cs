@@ -2,7 +2,7 @@
 
 namespace SRML
 {
-    internal interface ILoadOrderCalculator
+    public interface ILoadOrderCalculator
     {
         IEnumerable<IMod> CalculateLoadOrder(IEnumerable<IMod> mods);
     }

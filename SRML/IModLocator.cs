@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SRML
 {
-    interface IModLocator
+    public interface IModLocator
     {
         /// <summary>
         /// Get a mod loading domain for a given directory

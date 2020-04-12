@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SRML
 {
-    interface IAssemblyResolver
+    public interface IAssemblyResolver
     {
         IDisposable Initialize(IModLoadingDomain domain);
     }

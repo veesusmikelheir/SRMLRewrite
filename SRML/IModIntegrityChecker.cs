@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SRML
 {
-    interface IModIntegrityChecker
+    public interface IModIntegrityChecker
     {
         /// <summary>
         /// Makes sure that the given list of mods is valid, otherwise throws an exception

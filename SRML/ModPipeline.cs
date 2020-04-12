@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SRML
 {
-    class ModPipeline : IModContainer
+    public class ModPipeline : IModContainer
     {
         List<IMod> _mods;
 

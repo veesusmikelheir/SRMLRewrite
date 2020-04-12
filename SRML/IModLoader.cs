@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SRML
 {
-    interface IModLoader
+    public interface IModLoader
     {
         /// <summary>
         /// Initializes the mod and returns a complete <see cref="IMod"/> object
