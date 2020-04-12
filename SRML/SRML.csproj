@@ -51,6 +51,7 @@
     <Compile Include="ModLoading\Core\FileSystemDomain.cs" />
     <Compile Include="ModLoading\Core\Integrity\AggregateIntegrityChecker.cs" />
     <Compile Include="ModLoading\Core\Integrity\DuplicateIntegrityChecker.cs" />
+    <Compile Include="ModLoading\Core\LoadOrderCalculator.cs" />
     <Compile Include="ModLoading\Core\ModInfo.cs" />
     <Compile Include="ModLoading\Core\Integrity\DependencyIntegrityChecker.cs" />
     <Compile Include="ModLoading\FileSystemModLocator.cs" />

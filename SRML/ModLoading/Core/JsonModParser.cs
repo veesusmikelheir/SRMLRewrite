@@ -87,8 +87,8 @@ namespace SRML.ModLoading.Core
 
                 MakeNotNull(ref author);
                 MakeNotNull(ref description);
-                MakeNotNull(ref load_before, new string[0]);
-                MakeNotNull(ref load_after, new string[0]);
+                MakeNotNull(ref loads_before, new string[0]);
+                MakeNotNull(ref loads_after, new string[0]);
                 MakeNotNull(ref dependencies, new JsonModDependency[0]);
                 MakeNotNull(ref api_version, Assembly.GetExecutingAssembly().GetName().Version.ToString());
                 foreach (var dependency in dependencies)

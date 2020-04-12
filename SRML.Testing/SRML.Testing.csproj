@@ -71,6 +71,7 @@
     <Compile Include="ModLoading\Integrity\DependencyIntegrityTests.cs" />
     <Compile Include="ModLoading\FileSystemDomainTests.cs" />
     <Compile Include="ModLoading\JsonParserTests.cs" />
+    <Compile Include="ModLoading\LoadOrderCalculatorTests.cs" />
     <Compile Include="ModLoading\ModPipelineTests.cs" />
     <Compile Include="VersionRequirementTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

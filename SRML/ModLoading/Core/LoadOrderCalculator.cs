@@ -57,7 +57,7 @@ namespace SRML.ModLoading.Core
                 foreach(var v in realLoadsAfters[mod])
                 {
                     // CIRCULAR LOAD ORDER FOUND!
-                    if (currentlyLoadingMods.Contains(v)) throw new Exception($"Circular load order detected with mod '{v.Info.MetaData.Name}'");
+                    if (currentlyLoadingMods.Contains(v)) throw new Exception($"Circular load order detected with mod '{v.Info.ID}'");
                     // load the load afters before us
                     PushModToList(v);
                 
@@ -66,6 +66,11 @@ namespace SRML.ModLoading.Core
                 pushedModsSoFar.Add(mod);
                 // we loaded so remove from currently loading
                 currentlyLoadingMods.Remove(mod);
+            }
+
+            foreach(var v in list)
+            {
+                PushModToList(v);
             }
 
             return pushedModsSoFar;
