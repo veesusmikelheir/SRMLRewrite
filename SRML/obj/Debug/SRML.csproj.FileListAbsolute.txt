@@ -1,6 +1,0 @@
-C:\Users\veesusmikelheir\source\repos\SRML\SRML\obj\Debug\SRML.csprojAssemblyReference.cache
-C:\Users\veesusmikelheir\source\repos\SRML\SRML\obj\Debug\SRML.csproj.CoreCompileInputs.cache
-C:\Users\veesusmikelheir\source\repos\SRML\SRML\bin\Debug\SRML.dll
-C:\Users\veesusmikelheir\source\repos\SRML\SRML\bin\Debug\SRML.pdb
-C:\Users\veesusmikelheir\source\repos\SRML\SRML\obj\Debug\SRML.dll
-C:\Users\veesusmikelheir\source\repos\SRML\SRML\obj\Debug\SRML.pdb
