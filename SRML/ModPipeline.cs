@@ -32,7 +32,7 @@ namespace SRML
         public void InitializeMods(string directory)
         {
             var modDomain = ModLocator.LocateMods(directory);
-            var parsedMods = modDomain.ModFiles.Select(x => new { FileSystem = x, Info = ModParser.TryParse(x, out var info) ? info : null });
+            var parsedMods = modDomain.ModFiles.Select(x => new { FileSystem = x, Info = ModParser.TryParse(x, out var info) ? info : throw new Exception("Could not parse one of the mods")});
             IntegrityChecker.CheckForValidity(parsedMods.Select(x => x.Info));
             using (var dummy = Resolver.Initialize(modDomain))
             {
@@ -42,6 +42,10 @@ namespace SRML
                     {
                         _mods.Add(mod);
 
+                    }
+                    else
+                    {
+                        throw new Exception($"Could not load mod {parsedMod.Info.ID}");
                     }
                 }
             }
