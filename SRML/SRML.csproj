@@ -72,6 +72,7 @@
     <Compile Include="Events\API\IDualEventTrigger.cs" />
     <Compile Include="Events\DualEventHandler.cs" />
     <Compile Include="Events\ReplacementEvent.cs" />
+    <Compile Include="Main.cs" />
     <Compile Include="ModLoading\API\IAssemblyResolver.cs" />
     <Compile Include="ModLoading\API\IModLoadOrder.cs" />
     <Compile Include="ModLoading\Core\BasicAssemblyResolver.cs" />
