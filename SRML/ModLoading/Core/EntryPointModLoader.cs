@@ -13,7 +13,7 @@ namespace SRML.ModLoading.Core
         public bool TryLoad(IModInfo info, IModFileSystem modfiles, IModLoadingDomain loadingdomain, out IMod mod)
         {
             mod = null;
-            foreach(var file in modfiles.ModFiles.Where(x=>Path.GetExtension(x)=="dll"))
+            foreach(var file in modfiles.ModFiles.Where(x=>Path.GetExtension(x)==".dll"))
             {
                 var assembly = Assembly.LoadFrom(file);
                 var entryType = assembly.GetTypes().FirstOrDefault(x=>(typeof(IModEntryPoint).IsAssignableFrom(x)));

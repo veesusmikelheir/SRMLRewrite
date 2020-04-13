@@ -20,7 +20,11 @@ namespace SRML.ModLoading.Core.Parsers
             modInfo = null;
             foreach(var parser in Parsers)
             {
-                if (parser.TryParse(loadInfo, out modInfo)) return true;
+                if (parser.TryParse(loadInfo, out var info))
+                {
+                    modInfo = info;
+                    return true;
+                }
             }
             return false;
         }

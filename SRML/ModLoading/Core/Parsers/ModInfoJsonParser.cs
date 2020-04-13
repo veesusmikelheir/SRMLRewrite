@@ -11,9 +11,10 @@ namespace SRML.ModLoading.Core.Parsers
     {
         public override string GetJSONInput(IModFileSystem loadInfo)
         {
+            
             foreach(var v in loadInfo.ModFiles)
             {
-                if (v.EndsWith("modinfo.json")) return File.ReadAllText(v);
+                if (Path.GetFileName(v)==("modinfo.json")) return File.ReadAllText(v);
             }
             return null;
         }

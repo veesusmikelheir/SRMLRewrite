@@ -8,36 +8,31 @@ using SRML.ModLoading.API;
 
 namespace SRML.ModLoading.Core.Parsers
 {
+    
     public class DLLManifestJsonParser : JsonModParser
     {
+
         public override string GetJSONInput(IModFileSystem loadInfo)
         {
             foreach(var v in loadInfo.ModFiles)
             {
-                if (Path.GetExtension(v) != "dll") continue;
-                var domain = AppDomain.CreateDomain("load");
-                Assembly loadedAssembly = null;
-                domain.DoCallBack(() =>
+
+                if (Path.GetExtension(v) != ".dll") continue;
+                Assembly loadedAssembly = Assembly.LoadFrom(v);
+
+                foreach (var resource in loadedAssembly.GetManifestResourceNames())
                 {
-                    loadedAssembly = Assembly.ReflectionOnlyLoadFrom(v);
-                });
-                try
-                {
-                    foreach (var resource in loadedAssembly.GetManifestResourceNames())
+                    if (!resource.EndsWith("modinfo.json")) continue;
+                    using (var reader = new StreamReader(loadedAssembly.GetManifestResourceStream(resource)))
                     {
-                        if (!resource.EndsWith("modinfo.json")) continue;
-                        using(var reader = new StreamReader(loadedAssembly.GetManifestResourceStream(resource)))
-                        {
-                            return reader.ReadToEnd();
-                        }
+                        var read = reader.ReadToEnd();
+                        return read;
                     }
                 }
-                finally
-                {
-                    AppDomain.Unload(domain);
-                }
+                    
             }
             return null;
         }
+
     }
 }

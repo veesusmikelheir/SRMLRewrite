@@ -9,15 +9,15 @@ using SRML.ModLoading.API;
 
 namespace SRML.ModLoading.Core.Parsers
 {
-    public abstract class JsonModParser : IModParser
+    public abstract class JsonModParser : MarshalByRefObject, IModParser
     {
         public bool TryParse(IModFileSystem loadInfo, out IModInfo modInfo)
         {
             modInfo = null;
             var input = GetJSONInput(loadInfo);
             if (input == null || input.Length == 0) return false;
-            var modinfo = ParseJSON(input);
-            if (modinfo == null) return false;
+            modInfo = ParseJSON(input);
+            if (modInfo == null) return false;
             return true;
         }
 
@@ -27,10 +27,10 @@ namespace SRML.ModLoading.Core.Parsers
         {
             if (json == null) throw new ArgumentNullException("json");
             if (json.Length == 0) throw new ArgumentException("json");
-            return JsonInfoMod.FromJSON(json);
+            return JsonModInfo.FromJSON(json);
         }
         [JsonObject(MemberSerialization.Fields)]
-        internal class JsonInfoMod : IModInfo, IModMetaData, IModLoadOrder
+        internal class JsonModInfo : IModInfo, IModMetaData, IModLoadOrder
         {
 
             [JsonProperty] string id;
@@ -63,13 +63,13 @@ namespace SRML.ModLoading.Core.Parsers
 
             public string[] LoadsAfter => loads_after;
 
-            public static JsonInfoMod FromJSON(string json)
+            public static JsonModInfo FromJSON(string json)
             {
                 if (json == null) throw new ArgumentNullException("json");
                 if (json.Length == 0) throw new ArgumentOutOfRangeException("json");
                 try
                 {
-                    var proto = JsonConvert.DeserializeObject<JsonInfoMod>(json);
+                    var proto = JsonConvert.DeserializeObject<JsonModInfo>(json);
 
                     return proto;
                 }

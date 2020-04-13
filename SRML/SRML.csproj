@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="INIFileParser, Version=2.5.2.0, Culture=neutral, PublicKeyToken=79af7b307b65cf3c, processorArchitecture=MSIL">
+      <HintPath>..\packages\ini-parser.2.5.2\lib\net20\INIFileParser.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -45,16 +49,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\AbstractConfigGenerator.cs" />
+    <Compile Include="Config\AbstractConfigValue.cs" />
+    <Compile Include="Config\ArrayParserGenerator.cs" />
+    <Compile Include="Config\ConfigFile.cs" />
+    <Compile Include="Config\ConfigManager.cs" />
+    <Compile Include="Config\ConfigSection.cs" />
+    <Compile Include="Config\IValueStandIn.cs" />
+    <Compile Include="Config\Range.cs" />
+    <Compile Include="Config\Reflection\FieldBackedConfigValue.cs" />
+    <Compile Include="Config\IConfigGenerator.cs" />
+    <Compile Include="Config\IConfigValue.cs" />
+    <Compile Include="Config\IStringParser.cs" />
+    <Compile Include="Config\IParserGenerator.cs" />
+    <Compile Include="Config\ParserManager.cs" />
+    <Compile Include="Config\Reflection\Attributes\ConfigNameAttribute.cs" />
+    <Compile Include="Config\Reflection\ReflectionConfigGenerator.cs" />
+    <Compile Include="Config\Reflection\ReflectionStringParser.cs" />
+    <Compile Include="Config\StringStringParser.cs" />
+    <Compile Include="Events\API\IDualEvent.cs" />
+    <Compile Include="Events\API\IDualEventHandler.cs" />
+    <Compile Include="Events\API\IDualEventTrigger.cs" />
+    <Compile Include="Events\DualEventHandler.cs" />
+    <Compile Include="Events\ReplacementEvent.cs" />
     <Compile Include="ModLoading\API\IAssemblyResolver.cs" />
     <Compile Include="ModLoading\API\IModLoadOrder.cs" />
-    <Compile Include="ModLoading\BasicModLoader.cs" />
+    <Compile Include="ModLoading\Core\BasicAssemblyResolver.cs" />
+    <Compile Include="ModLoading\Core\EntryPointModLoader.cs" />
     <Compile Include="ModLoading\Core\FileSystemDomain.cs" />
     <Compile Include="ModLoading\Core\Integrity\AggregateIntegrityChecker.cs" />
     <Compile Include="ModLoading\Core\Integrity\DuplicateIntegrityChecker.cs" />
     <Compile Include="ModLoading\Core\LoadOrderCalculator.cs" />
     <Compile Include="ModLoading\Core\ModInfo.cs" />
     <Compile Include="ModLoading\Core\Integrity\DependencyIntegrityChecker.cs" />
-    <Compile Include="ModLoading\FileSystemModLocator.cs" />
+    <Compile Include="ModLoading\Core\Parsers\AggregateModParser.cs" />
+    <Compile Include="ModLoading\Core\Parsers\DLLManifestJsonParser.cs" />
+    <Compile Include="ModLoading\Core\Parsers\ModInfoJsonParser.cs" />
+    <Compile Include="ModLoading\Core\FileSystemModLocator.cs" />
     <Compile Include="ModLoading\API\ILoadOrderCalculator.cs" />
     <Compile Include="ModLoading\API\IMod.cs" />
     <Compile Include="ModLoading\API\IModContainer.cs" />
@@ -68,13 +99,15 @@
     <Compile Include="ModLoading\API\IModLocator.cs" />
     <Compile Include="ModLoading\API\IModMetaData.cs" />
     <Compile Include="ModLoading\API\IModParser.cs" />
-    <Compile Include="ModLoading\Core\JsonModParser.cs" />
+    <Compile Include="ModLoading\Core\Parsers\JsonModParser.cs" />
     <Compile Include="ModLoading\Core\ModPipeline.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\ReflectionUtil.cs" />
     <Compile Include="VersionRequirement.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
